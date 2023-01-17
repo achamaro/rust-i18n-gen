@@ -57,7 +57,7 @@ cd {module_name}
 
 ```toml:{module_name}/Cargo.toml
 once_cell = "1.17.0"
-rust-i18n-gen = { git = "https://github.com/achamaro/rust-i18n-gen.git" }
+rust-i18n-gen = { git = "https://github.com/achamaro/rust-i18n-gen", tag = "v0.1.0" }
 ```
 
 モジュール生成用の `{module_name}/src/main.rs` を作成
