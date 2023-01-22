@@ -1,4 +1,6 @@
 general:
   hello:
     world: こんにちは
-
+  this:
+    is:
+      a: これは{}です

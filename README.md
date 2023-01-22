@@ -48,7 +48,7 @@ monopoly: true
 ### 翻訳モジュールの出力先の作成
 
 ```
-cargo init {module_name} --lib
+cargo init {module_name}
 cd {module_name}
 ```
 
@@ -57,7 +57,7 @@ cd {module_name}
 
 ```toml:{module_name}/Cargo.toml
 once_cell = "1.17.0"
-rust-i18n-gen = { git = "https://github.com/achamaro/rust-i18n-gen", tag = "v0.1.0" }
+rust-i18n-gen = { git = "https://github.com/achamaro/rust-i18n-gen", tag = "v0.1.1" }
 ```
 
 モジュール生成用の `{module_name}/src/main.rs` を作成

@@ -25,10 +25,27 @@ mod trans {
     impl Root {}
 
     pub struct General {
+        pub this: This,
         pub hello: Hello,
     }
 
     impl General {}
+
+    pub struct This {
+        pub is: Is,
+    }
+
+    impl This {}
+
+    pub struct Is {
+        pub a: &'static str,
+    }
+
+    impl Is {
+        pub fn a(&self, _0: &str) -> String {
+            self.a.replacen("{}", _0, 1)
+        }
+    }
 
     pub struct Hello {
         pub world: &'static str,
@@ -47,6 +64,9 @@ mod trans {
             "en".to_string(),
             Root {
                 general: General {
+                    this: This {
+                        is: Is { a: "this is a {}" },
+                    },
                     hello: Hello {
                         world: "Hello World",
                     },
@@ -58,6 +78,11 @@ mod trans {
             "ja".to_string(),
             Root {
                 general: General {
+                    this: This {
+                        is: Is {
+                            a: "これは{}です"
+                        },
+                    },
                     hello: Hello {
                         world: "こんにちは",
                     },

@@ -246,7 +246,7 @@ fn parse_args(message: &String) -> (String, String) {
                 .join(", "),
         args.iter()
             .enumerate()
-            .map(|(i, arg)| format!(".replacen(\"{{{arg}}}\", {arg}_{i}), 1"))
+            .map(|(i, arg)| format!(".replacen(\"{{{arg}}}\", {arg}_{i}, 1)"))
             .collect::<Vec<String>>()
             .join(""),
     )
