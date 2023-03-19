@@ -1,2 +1,27 @@
-[workspace]
-members = ["rust-i18n-gen", "example", "i18n"]
+[package]
+name = "rust-i18n-gen"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+glob = "0.3.1"
+serde_yaml = "0.9.16"
+serde_json = "1.0.91"
+serde = { version = "1.0.152", features = ["derive"] }
+regex = "1.7.1"
+convert_case = "0.6.0"
+once_cell = "1.17.0"
+tera = "1.17.1"
+json5 = "0.4.1"
+indexmap = "1.9.2"
+thiserror = "1.0.39"
+
+proc-macro2 = "1.0.50"
+quote = { version = "1.0.23" }
+syn = { version = "1.0.107", features = ["full", "extra-traits"] }
+
+
+[lib]
+proc-macro = true
