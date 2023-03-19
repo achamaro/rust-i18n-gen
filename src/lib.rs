@@ -67,7 +67,7 @@ fn i18n_impl(attr: TokenStream, item: TokenStream) -> TokenStream {
                 });
 
                 quote! {
-                    #i18n_message_name::new(#message, indexmap! { #(#message_range),* })
+                    #i18n_message_name::new(#message, indexmap::indexmap! { #(#message_range),* })
                 }
             });
 
@@ -82,14 +82,14 @@ fn i18n_impl(attr: TokenStream, item: TokenStream) -> TokenStream {
         });
 
         quote! {
-            let mut locale_map: #i18n_resources_name = IndexMap::new();
+            let mut locale_map: #i18n_resources_name = indexmap::IndexMap::new();
             #(#resource_insert)*
             map.insert(#locale, locale_map);
         }
     });
 
     let resources_init = quote! {
-        let mut map: IndexMap<&'static str, #i18n_resources_name> = IndexMap::new();
+        let mut map: indexmap::IndexMap<&'static str, #i18n_resources_name> = indexmap::IndexMap::new();
 
         #(#resources_insert)*
 
@@ -99,16 +99,16 @@ fn i18n_impl(attr: TokenStream, item: TokenStream) -> TokenStream {
     quote! {
         #item_struct
 
-        pub type #i18n_resources_name = IndexMap<&'static str, #i18n_resource_name>;
+        pub type #i18n_resources_name = indexmap::IndexMap<&'static str, #i18n_resource_name>;
 
         #[derive(Debug)]
         pub struct #i18n_message_name {
             message: &'static str,
-            ranges: IndexMap<usize, Range<usize>>,
+            ranges: indexmap::IndexMap<usize, std::ops::Range<usize>>,
         }
 
         impl #i18n_message_name {
-            pub fn new(message: &'static str, ranges: IndexMap<usize, Range<usize>>) -> Self {
+            pub fn new(message: &'static str, ranges: indexmap::IndexMap<usize, std::ops::Range<usize>>) -> Self {
                 Self { message, ranges }
             }
 
@@ -161,7 +161,7 @@ fn i18n_impl(attr: TokenStream, item: TokenStream) -> TokenStream {
                         i = 1;
                     }
                 } else {
-                    i = min(self.messages_len - 1, num)
+                    i = std::cmp::min(self.messages_len - 1, num)
                 }
 
                 &self.messages[i]
@@ -175,8 +175,8 @@ fn i18n_impl(attr: TokenStream, item: TokenStream) -> TokenStream {
                 }
             }
 
-            pub fn resources() -> &'static IndexMap<&'static str, #i18n_resources_name> {
-                static R: OnceCell<IndexMap<&'static str, #i18n_resources_name>> = OnceCell::new();
+            pub fn resources() -> &'static indexmap::IndexMap<&'static str, #i18n_resources_name> {
+                static R: once_cell::sync::OnceCell<indexmap::IndexMap<&'static str, #i18n_resources_name>> = once_cell::sync::OnceCell::new();
                 R.get_or_init(|| {
                     #resources_init
                 })

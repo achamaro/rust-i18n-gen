@@ -115,7 +115,7 @@ impl I18n {
 }
 
 #[derive(Debug)]
-#[i18n("tests/lang", "ja")]
+#[i18n("examples/lang", "ja")]
 pub struct I18nGen {}
 
 #[test]
@@ -126,7 +126,10 @@ fn test_i18n() {
     assert_eq!("b", i18n.t("a").plural(0).get());
     assert_eq!("b", i18n.t("a").plural(5).get());
     assert_eq!("aacbb", i18n.t("b").replace(&vec!["c"]));
-    assert_eq!("aacbb", i18n.t("b").plural(5).replace(&vec!["c"]));
+    assert_eq!(
+        "aa100bb",
+        i18n.t("b").plural(5).replace(&vec![&100.to_string()])
+    );
 
     let i18n_gen = I18nGen::new("en");
     assert_eq!("Hello World", i18n_gen.t("general.hello.world").get());
