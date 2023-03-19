@@ -6,6 +6,6 @@
   "editor.codeActionsOnSave": {
     "source.addMissingImports": true
   },
-  "i18n-ally.localesPaths": ["example/lang"],
+  "i18n-ally.localesPaths": ["tests/lang"],
   "i18n-ally.keystyle": "nested"
 }

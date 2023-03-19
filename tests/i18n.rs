@@ -115,7 +115,7 @@ impl I18n {
 }
 
 #[derive(Debug)]
-#[i18n("lang", "ja")]
+#[i18n("tests/lang", "ja")]
 pub struct I18nGen {}
 
 #[test]
